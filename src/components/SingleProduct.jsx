@@ -11,7 +11,7 @@ const SingleProduct = () => {
   const getSingleProduct = async() => {
      try {
 
-      const res = await axios.get(`http://localhost:8080/products/${id}`)
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/products/${id}`)
       setProductInfo(res.data)
 
      }catch(err) {

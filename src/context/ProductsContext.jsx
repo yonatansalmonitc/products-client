@@ -11,7 +11,7 @@ const ProductsContextProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/products', {withCredentials: true});
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/products`, { withCredentials: true });
       setProductsList(res.data);
     } catch (err) {
       console.log(err);
@@ -20,7 +20,7 @@ const ProductsContextProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
-      const res = await axios.post('http://localhost:8080/products', newProduct, {withCredentials: true});
+      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/products`, newProduct, { withCredentials: true });
       console.log(res.data);
       const newProductsList = [...productsList, res.data];
       setProductsList(newProductsList);
@@ -31,7 +31,7 @@ const ProductsContextProvider = ({ children }) => {
 
   const deleteProduct = async (productId) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/products/${productId}`, {withCredentials: true});
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/products/${productId}`, { withCredentials: true });
       if (res.data.ok) {
         const deletedArray = productsList.filter((product) => product.id != productId);
         setProductsList(deletedArray);
@@ -43,7 +43,7 @@ const ProductsContextProvider = ({ children }) => {
 
   const editProduct = async (editedProduct) => {
     try {
-      const res = await axios.put(`http://localhost:8080/products/${editedProduct.id}`, editedProduct);
+      const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/products/${editedProduct.id}`, editedProduct);
     } catch (err) {
       console.log(err);
     }

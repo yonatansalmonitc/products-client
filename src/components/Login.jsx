@@ -13,7 +13,7 @@ function Login() {
 
   const handleLogIn = async (e) => {
     try {
-      const res = await axios.post('http://localhost:8080/users/login', { email, password }, { withCredentials: true });
+      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/login`, { email, password }, { withCredentials: true });
       if (res.data.ok) {
         setUser(res.data.userId);
         navigate('/products');
