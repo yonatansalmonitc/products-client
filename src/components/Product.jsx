@@ -10,7 +10,8 @@ const Product = ({ product }) => {
   const { deleteProduct } = useContext(ProductsContext);
   const navigate = useNavigate()
 
-  const handleDeleteProduct = () => {
+  const handleDeleteProduct = (e) => {
+    e.stopPropagation()
     deleteProduct(product.id);
   };
 
